@@ -22,7 +22,7 @@ fun NavGraph() {
                     defaultValue = -1 },
             )
         ){
-            DescriptionScreen(navController)
+            DescriptionScreen()
         }
         composable(route = Screen.WebViewScreen.route) { WebViewScreen(navController) }
     }

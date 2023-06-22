@@ -11,34 +11,35 @@ data class Results(
 data class Match(
     @SerializedName("event_key")
     val matchId: Int,
-    @SerializedName("away_team_key")
-    val awayTeamId: Int,
-    val away_team_logo: String,
     @SerializedName("home_team_key")
     val homeTeamId: Int,
-    val home_team_logo: String,
-    val goalscorers: List<Goalscorer>,
-    val event_away_formation: String, //schema
-    @SerializedName("event_away_team")
-    val awayTeamName: String,
-    val event_date: String,
-    val event_final_result: String,
-    val event_ft_result: String,
-    val event_home_formation: String, //schema
+    @SerializedName("away_team_key")
+    val awayTeamId: Int,
     @SerializedName("event_home_team")
     val homeTeamName: String,
-    val event_live: String,
-    val event_penalty_result: String,
-    val event_stadium: String,
-    val event_status: String,
+    @SerializedName("event_away_team")
+    val awayTeamName: String,
+    val away_team_logo: String,
+    val home_team_logo: String,
+    @SerializedName("event_home_formation")
+    val home_schema: String,
+    @SerializedName("event_away_formation")
+    val away_schema: String,
+    val event_date: String,
     val event_time: String,
+    val event_final_result: String,
+    val event_ft_result: String,
+    val event_penalty_result: String,
+    val event_status: String,
+    val event_live: String,
+    val event_stadium: String,
     @SerializedName("league_key")
     val leagueId: Int,
-    val league_group: Any,
     val league_logo: String,
     val league_name: String,
     val league_round: String,
     val league_season: String,
+    val goalscorers: List<Goalscorer>
 )
 
 data class Goalscorer(
