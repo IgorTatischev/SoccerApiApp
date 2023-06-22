@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "488396535240",
+    "project_id": "soccerapiapp",
+    "storage_bucket": "soccerapiapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:488396535240:android:3e0dcb91d0d8915f8cfcfd",
+        "android_client_info": {
+          "package_name": "com.example.soccerapiapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "488396535240-imivvek1u9nqmn49431at8jb9lskedsi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlowbFDdK86gf8st-zUAk-RvyTFXunNdg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "488396535240-imivvek1u9nqmn49431at8jb9lskedsi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
