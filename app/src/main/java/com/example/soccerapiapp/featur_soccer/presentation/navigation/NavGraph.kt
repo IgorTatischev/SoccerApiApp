@@ -6,7 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.soccerapiapp.featur_soccer.presentation.screens.description.DescriptionScreen
+import com.example.soccerapiapp.featur_soccer.presentation.screens.match_description.MatchDescriptionScreen
 import com.example.soccerapiapp.featur_soccer.presentation.screens.matches.MatchesListScreen
 import com.example.soccerapiapp.featur_soccer.presentation.screens.webview.WebViewScreen
 
@@ -22,8 +22,8 @@ fun NavGraph() {
                     defaultValue = -1 },
             )
         ){
-            DescriptionScreen()
+            MatchDescriptionScreen(navController)
         }
-        composable(route = Screen.WebViewScreen.route) { WebViewScreen(navController) }
+        composable(route = Screen.WebViewScreen.route) { WebViewScreen() }
     }
 }

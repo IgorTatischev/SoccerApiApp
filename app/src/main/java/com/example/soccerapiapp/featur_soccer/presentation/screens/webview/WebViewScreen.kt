@@ -11,7 +11,7 @@ import com.google.accompanist.web.rememberWebViewState
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun WebViewScreen(navController: NavController) {
+fun WebViewScreen() {
     Box(modifier = Modifier.fillMaxSize()) {
         val webViewState = rememberWebViewState(url = "https://allsportsapi.com/")
         WebView(

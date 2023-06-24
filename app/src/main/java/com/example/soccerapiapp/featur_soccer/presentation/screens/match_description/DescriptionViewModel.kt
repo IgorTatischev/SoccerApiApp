@@ -1,4 +1,4 @@
-package com.example.soccerapiapp.featur_soccer.presentation.screens.description
+package com.example.soccerapiapp.featur_soccer.presentation.screens.match_description
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf

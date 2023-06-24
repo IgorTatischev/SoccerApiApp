@@ -2,7 +2,7 @@ package com.example.soccerapiapp.featur_soccer.domain.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Results(
+data class MatchesList(
     val success: Int,
     @SerializedName("result")
     val matches: List<Match>

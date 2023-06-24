@@ -1,6 +1,7 @@
 package com.example.soccerapiapp.featur_soccer.presentation.screens.matches
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -59,11 +60,15 @@ fun MatchesListScreen(navController: NavController, viewModel: MatchesListViewMo
             },
                 colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
         ){
-            Text(stringResource(id = R.string.webview), color = Color.White, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+            Text(
+                text = stringResource(id = R.string.webview),
+                color = Color.White,
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Bold)
             }
         }
     ) {
-        Box(modifier = Modifier.pullRefresh(pullRefreshState)) {
+        Box(modifier = Modifier.pullRefresh(pullRefreshState).background(MaterialTheme.colorScheme.surface)) {
             Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
                 LazyColumn(modifier = Modifier.fillMaxSize()) {
                     items(state.matches) { match ->
