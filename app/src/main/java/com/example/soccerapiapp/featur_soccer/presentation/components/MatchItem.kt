@@ -13,8 +13,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
-import androidx.compose.material3.Text
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
@@ -38,25 +38,20 @@ fun MatchItem(match: Match, modifier: Modifier){
         shape = RoundedCornerShape(16.dp),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(5.dp),
+            .padding(5.dp), //card is reduced in the list
         elevation = 4.dp
     ) {
         Column(modifier.fillMaxSize()) {
-            Row(
-                horizontalArrangement = Arrangement.Center,
+            Text(
+                text = match.league_name,
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 5.dp, bottom = 10.dp)
-            ) {
-                Text(
-                    text = match.league_name,
-                    fontSize = 12.sp,
-                    fontWeight = FontWeight.Light,
-                    color = Color.Gray
-                )
-            }
-            Spacer(modifier = Modifier.height(5.dp))
-            Row(modifier.fillMaxWidth().padding(bottom = 10.dp), horizontalArrangement = Arrangement.Center) {
+                    .align(CenterHorizontally)
+                    .padding(top = 5.dp, bottom = 15.dp),
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Light,
+                color = Color.Gray
+            )
+            Row(modifier.fillMaxWidth().padding(bottom = 15.dp), horizontalArrangement = Arrangement.Center) {
                 Column(
                     horizontalAlignment = CenterHorizontally,
                     modifier = Modifier.width(100.dp).padding(start = 10.dp)) {
@@ -89,7 +84,7 @@ fun MatchItem(match: Match, modifier: Modifier){
                     horizontalAlignment = CenterHorizontally,
                     modifier = Modifier
                         .width(100.dp)
-                        .padding(start = 5.dp, end = 5.dp)
+                        .padding(start = 10.dp, end = 10.dp)
                 ) {
                     Text(
                         text = match.event_ft_result,

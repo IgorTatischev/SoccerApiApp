@@ -2,6 +2,7 @@ package com.example.soccerapiapp.featur_soccer.presentation.screens.match_descri
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,6 +14,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -32,6 +37,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -42,11 +48,11 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import coil.transform.RoundedCornersTransformation
 import com.example.soccerapiapp.R
+import com.example.soccerapiapp.featur_soccer.presentation.components.GoalItem
 
 @OptIn(ExperimentalMaterial3Api::class)
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun MatchDescriptionScreen(navController: NavController, viewModel: DescriptionViewModel = hiltViewModel()) {
+fun MatchDescriptionScreen(navController: NavController, viewModel: MatchDescriptionViewModel = hiltViewModel()) {
 
     val scaffoldState = rememberScaffoldState()
     val state = viewModel.state.value
@@ -72,7 +78,7 @@ fun MatchDescriptionScreen(navController: NavController, viewModel: DescriptionV
                 },)
         }
     ){
-        Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.surface)) {
+        Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.surface).padding(it)) {
             if (state.isLoading){
                 CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
             }
@@ -88,7 +94,7 @@ fun MatchDescriptionScreen(navController: NavController, viewModel: DescriptionV
                 )
             }
             else {
-                Column(Modifier.fillMaxSize()) {
+                Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState())) {
                     Column(modifier = Modifier.fillMaxWidth().padding(top = 20.dp), horizontalAlignment = Alignment.CenterHorizontally) {
                         match?.let {
                             Text(
@@ -243,6 +249,19 @@ fun MatchDescriptionScreen(navController: NavController, viewModel: DescriptionV
                         style = MaterialTheme.typography.headlineSmall,
                         fontSize = 24.sp,
                     )
+                    Column {
+                        match?.goalscorers?.forEach{ goal ->
+                            GoalItem(goal = goal,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clickable {
+                                        //TODO
+                                    }
+                                    .padding(10.dp)
+                            )
+                            Spacer(modifier = Modifier.height(10.dp))
+                        }
+                    }
                 }
             }
         }

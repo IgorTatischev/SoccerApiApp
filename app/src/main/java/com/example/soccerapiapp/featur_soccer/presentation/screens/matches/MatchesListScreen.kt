@@ -15,8 +15,12 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Web
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
@@ -39,9 +43,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.soccerapiapp.R
 import com.example.soccerapiapp.featur_soccer.presentation.components.MatchItem
+import com.example.soccerapiapp.featur_soccer.presentation.components.SortChipGroup
 import com.example.soccerapiapp.featur_soccer.presentation.navigation.Screen
+import com.example.soccerapiapp.featur_soccer.utils.MatchOrder
 
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MatchesListScreen(navController: NavController, viewModel: MatchesListViewModel = hiltViewModel()) {
@@ -49,39 +54,42 @@ fun MatchesListScreen(navController: NavController, viewModel: MatchesListViewMo
     val scaffoldState = rememberScaffoldState()
     val state = viewModel.state.value
     val isRefreshing by viewModel.isRefreshing.collectAsState()
-    val pullRefreshState = rememberPullRefreshState(isRefreshing, { viewModel.loadList() })
+    val pullRefreshState = rememberPullRefreshState(isRefreshing, { viewModel.getListMatches(MatchOrder.None) })
 
     Scaffold(scaffoldState = scaffoldState,
         floatingActionButton = {
-            Button(modifier = Modifier
-                .size(width = 150.dp, height = 50.dp),
-            onClick = {
-                navController.navigate(Screen.WebViewScreen.route)
-            },
-                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
+            Button(
+                modifier = Modifier.size(70.dp),
+                onClick = {
+                    navController.navigate(Screen.WebViewScreen.route)
+                          },
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
+                shape = MaterialTheme.shapes.large
         ){
-            Text(
-                text = stringResource(id = R.string.webview),
-                color = Color.White,
-                fontSize = 12.sp,
-                fontWeight = FontWeight.Bold)
+                Icon(imageVector = Icons.Default.Web,
+                    contentDescription = "Web view",
+                    tint = MaterialTheme.colorScheme.onSecondary)
             }
         }
-    ) {
-        Box(modifier = Modifier.pullRefresh(pullRefreshState).background(MaterialTheme.colorScheme.surface)) {
-            Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+    ) { padding ->
+        Box(modifier = Modifier.pullRefresh(pullRefreshState).background(MaterialTheme.colorScheme.surface).padding(padding)) {
+            Column(Modifier.fillMaxSize().padding(15.dp)) {
+                SortChipGroup(
+                    hotelOrder = state.matchOrder,
+                    onOrderChange = {viewModel.getListMatches(it)})
+                Spacer(modifier = Modifier.height(10.dp))
                 LazyColumn(modifier = Modifier.fillMaxSize()) {
                     items(state.matches) { match ->
                         MatchItem(match = match,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(top = 8.dp)
                                 .clickable {
                                     navController.navigate(
                                         Screen.DescriptionScreen.route + "?matchId=${match.matchId}")
-                                })
-
-                        Spacer(modifier = Modifier.height(16.dp))
+                                }
+                                .padding(top = 10.dp) //content inside the card is reduced
+                        )
+                        Spacer(modifier = Modifier.height(15.dp))
                     }
                 }
             }

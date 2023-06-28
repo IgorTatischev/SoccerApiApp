@@ -2,6 +2,5 @@
     <string name="app_name">SoccerApiApp</string>
     <string name="away">Away</string>
     <string name="home">Home</string>
-    <string name="webview">WebView</string>
     <string name="goal">Goal Score</string>
 </resources>

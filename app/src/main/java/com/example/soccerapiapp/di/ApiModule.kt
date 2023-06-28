@@ -7,6 +7,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -28,7 +29,45 @@ object ApiModule {
 
     @Singleton
     @Provides
-    fun providesOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor) = OkHttpClient.Builder()
+    fun providesAuthInterceptor() = Interceptor.invoke { chain ->
+        val url = chain
+            .request()
+            .url
+            .newBuilder()
+            .addQueryParameter("APIkey", "e45b2a8c9c8527b8de7d5d7ed5961f5086f80d8d32867b63b84deddf61cb9a47")
+            .build()
+        chain.proceed(chain.request().newBuilder().url(url).build())
+    }
+
+//    @Provides
+//    @Singleton
+//    fun provideOkHttpClient(): OkHttpClient {
+//        return OkHttpClient.Builder()
+//            .addInterceptor { chain ->
+//                val url = chain
+//                    .request()
+//                    .url
+//                    .newBuilder()
+//                    .addQueryParameter("APIkey", "e45b2a8c9c8527b8de7d5d7ed5961f5086f80d8d32867b63b84deddf61cb9a47")
+//                    .build()
+//                chain.proceed(chain.request().newBuilder().url(url).build())
+//            }
+//            //add timeouts, logging
+//            .also { okHttpClient ->
+//                if (BuildConfig.DEBUG) {
+//                    val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
+//                        level = HttpLoggingInterceptor.Level.BODY
+//                    }
+//                    okHttpClient.addInterceptor(httpLoggingInterceptor)
+//                }
+//            }
+//            .build()
+//    }
+
+    @Singleton
+    @Provides
+    fun providesOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor, authInterceptor: Interceptor) = OkHttpClient.Builder()
+        .addInterceptor(authInterceptor)
         .addInterceptor(httpLoggingInterceptor)
         .build()
 

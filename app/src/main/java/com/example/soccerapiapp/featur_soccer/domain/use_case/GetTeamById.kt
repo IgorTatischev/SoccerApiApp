@@ -1,6 +1,5 @@
 package com.example.soccerapiapp.featur_soccer.domain.use_case
 
-import com.example.soccerapiapp.featur_soccer.domain.model.PlayersList
 import com.example.soccerapiapp.featur_soccer.domain.model.TeamsList
 import com.example.soccerapiapp.featur_soccer.domain.repository.SoccerRepository
 import com.example.soccerapiapp.featur_soccer.utils.Resource

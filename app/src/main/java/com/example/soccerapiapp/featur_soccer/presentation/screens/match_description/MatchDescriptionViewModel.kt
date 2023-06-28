@@ -13,13 +13,13 @@ import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
-class DescriptionViewModel @Inject constructor(
+class MatchDescriptionViewModel @Inject constructor(
     private val getMatchUseCase: GetMatchesById,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val _state = mutableStateOf(DescriptionState())
-    val state: State<DescriptionState> = _state
+    private val _state = mutableStateOf(MatchDescriptionState())
+    val state: State<MatchDescriptionState> = _state
 
     init {
         savedStateHandle.get<Int>("matchId")?.let { id ->
@@ -31,13 +31,13 @@ class DescriptionViewModel @Inject constructor(
         getMatchUseCase(id).onEach { result ->
             when(result) {
                 is Resource.Success -> {
-                    _state.value = DescriptionState(match = result.data?.matches?.get(0))
+                    _state.value = MatchDescriptionState(match = result.data?.matches?.get(0))
                 }
                 is Resource.Error -> {
-                    _state.value = DescriptionState(error = result.message ?: "unexpected error")
+                    _state.value = MatchDescriptionState(error = result.message ?: "unexpected error")
                 }
                 is Resource.Loading -> {
-                    _state.value = DescriptionState(isLoading = true)
+                    _state.value = MatchDescriptionState(isLoading = true)
                 }
             }
         }.launchIn(viewModelScope)

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.soccerapiapp.featur_soccer.domain.model.Match
 import com.example.soccerapiapp.featur_soccer.domain.use_case.GetMatches
+import com.example.soccerapiapp.featur_soccer.utils.MatchOrder
 import com.example.soccerapiapp.featur_soccer.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -26,13 +27,19 @@ class MatchesListViewModel @Inject constructor(private val getMatchesUseCase: Ge
     private val _isRefreshing = MutableStateFlow(false)
     val isRefreshing = _isRefreshing.asStateFlow()
 
+    private val today: String = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        .format(Date())
+    private val yesterday: String = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        .format(Date(System.currentTimeMillis() - 1000 * 60 * 60 * 24))
+    private val tomorrow: String = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        .format(Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24))
+
     init {
-        loadList()
+        loadList(today)
     }
     private var defaultList: List<Match> = emptyList()
 
-    fun loadList(){
-        val currentDate: String = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+    private fun loadList(currentDate: String) {
         getMatchesUseCase(currentDate, currentDate).onEach { result ->
             when(result) {
                 is Resource.Success -> {
@@ -48,5 +55,13 @@ class MatchesListViewModel @Inject constructor(private val getMatchesUseCase: Ge
                 }
             }
         }.launchIn(viewModelScope)
+    }
+
+    fun getListMatches(matchOrder: MatchOrder){
+        when (matchOrder) {
+            is MatchOrder.Yesterday -> loadList(yesterday)
+            is MatchOrder.Tomorrow -> loadList(tomorrow)
+            is MatchOrder.None -> loadList(today)
+        }
     }
 }

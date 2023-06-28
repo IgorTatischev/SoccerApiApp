@@ -39,10 +39,10 @@ data class Match(
     val league_name: String,
     val league_round: String,
     val league_season: String,
-    val goalscorers: List<Goalscorer>
+    val goalscorers: List<Goals>
 )
 
-data class Goalscorer(
+data class Goals(
     @SerializedName("away_scorer")
     val awayScorerName: String,
     @SerializedName("away_scorer_id")

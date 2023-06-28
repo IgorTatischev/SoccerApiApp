@@ -2,7 +2,7 @@
 <resources>
     <style name="Theme.SoccerApiApp.MySplash" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">#ff002e69</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/soccer_icon</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/soccer_splash_icon</item>
         <item name="postSplashScreenTheme">@style/Theme.SoccerApiApp</item>
     </style>
 </resources>
