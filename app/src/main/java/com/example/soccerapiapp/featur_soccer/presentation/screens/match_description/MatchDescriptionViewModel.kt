@@ -1,11 +1,13 @@
 package com.example.soccerapiapp.featur_soccer.presentation.screens.match_description
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.soccerapiapp.featur_soccer.domain.use_case.GetMatchesById
+import com.example.soccerapiapp.featur_soccer.domain.use_case.GetPlayerById
 import com.example.soccerapiapp.featur_soccer.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -15,11 +17,19 @@ import javax.inject.Inject
 @HiltViewModel
 class MatchDescriptionViewModel @Inject constructor(
     private val getMatchUseCase: GetMatchesById,
+    private val getPlayerUseCase: GetPlayerById,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private val _state = mutableStateOf(MatchDescriptionState())
     val state: State<MatchDescriptionState> = _state
+
+    fun onPurchaseClick(id: Long, teamId: Int){
+        getGoalScorerPlayer(id, teamId)
+    }
+    fun onDismissDialog(){
+        _state.value = state.value.copy(isDialogShown = false)
+    }
 
     init {
         savedStateHandle.get<Int>("matchId")?.let { id ->
@@ -38,6 +48,20 @@ class MatchDescriptionViewModel @Inject constructor(
                 }
                 is Resource.Loading -> {
                     _state.value = MatchDescriptionState(isLoading = true)
+                }
+            }
+        }.launchIn(viewModelScope)
+    }
+
+    private fun getGoalScorerPlayer(id: Long, teamId: Int) {
+        getPlayerUseCase(id, teamId).onEach { result ->
+            when(result) {
+                is Resource.Success -> {
+                    _state.value = state.value.copy(player = result.data?.players?.get(0), isDialogShown = true)
+                    Log.d("Player Name = ", result.data?.players?.get(0)!!.player_name)
+                }
+                else -> {
+                    _state.value = state.value.copy(isDialogShown = false)
                 }
             }
         }.launchIn(viewModelScope)

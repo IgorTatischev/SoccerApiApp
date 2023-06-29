@@ -1,12 +1,15 @@
 package com.example.soccerapiapp.featur_soccer.domain.model
 
+import com.google.gson.annotations.SerializedName
+
 data class PlayersList(
-    val result: List<Player>,
+    val players: List<Player>,
     val success: Int
 )
 
 data class Player(
-    val player_key: Long,
+    @SerializedName("player_key")
+    val playerId: Long,
     val player_name: String,
     val player_number: String,
     val player_age: String,

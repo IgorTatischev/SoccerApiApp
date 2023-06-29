@@ -1,4 +1,8 @@
 package com.example.soccerapiapp.featur_soccer.presentation.components
 
-class PlayerItem {
+import androidx.compose.runtime.Composable
+
+@Composable
+fun PlayerItem() {
+
 }

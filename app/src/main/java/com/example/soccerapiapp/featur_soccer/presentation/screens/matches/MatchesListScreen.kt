@@ -1,6 +1,5 @@
 package com.example.soccerapiapp.featur_soccer.presentation.screens.matches
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -19,7 +18,6 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Web
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
@@ -33,15 +31,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.soccerapiapp.R
 import com.example.soccerapiapp.featur_soccer.presentation.components.MatchItem
 import com.example.soccerapiapp.featur_soccer.presentation.components.SortChipGroup
 import com.example.soccerapiapp.featur_soccer.presentation.navigation.Screen

@@ -12,6 +12,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.soccerapiapp.featur_soccer.domain.model.Goals
@@ -35,7 +36,8 @@ fun GoalItem(goal: Goals, modifier: Modifier){
             Text(
                 text = goal.time + " '",
                 style = MaterialTheme.typography.titleMedium,
-                fontSize = 16.sp
+                fontSize = 16.sp,
+                color = Color.Red
             )
             Spacer(Modifier.width(10.dp))
             Text(

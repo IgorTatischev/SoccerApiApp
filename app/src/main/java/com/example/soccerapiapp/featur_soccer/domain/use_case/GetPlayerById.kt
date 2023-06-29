@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class GetPlayerById @Inject constructor(private val repository: SoccerRepository) {
-    operator fun invoke(playerId: Int,teamId: Int): Flow<Resource<PlayersList>> = flow {
+    operator fun invoke(playerId: Long, teamId: Int): Flow<Resource<PlayersList>> = flow {
         emit(repository.getPlayerById(playerId, teamId))
     }.flowOn(Dispatchers.IO)
 }

@@ -1,6 +1,5 @@
 package com.example.soccerapiapp.featur_soccer.presentation.screens.match_description
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -14,8 +13,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.CircularProgressIndicator
@@ -37,7 +34,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -48,6 +44,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import coil.transform.RoundedCornersTransformation
 import com.example.soccerapiapp.R
+import com.example.soccerapiapp.featur_soccer.presentation.components.CustomDialog
 import com.example.soccerapiapp.featur_soccer.presentation.components.GoalItem
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -77,8 +74,8 @@ fun MatchDescriptionScreen(navController: NavController, viewModel: MatchDescrip
                     }
                 },)
         }
-    ){
-        Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.surface).padding(it)) {
+    ){ padding ->
+        Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.surface).padding(padding)) {
             if (state.isLoading){
                 CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
             }
@@ -251,15 +248,24 @@ fun MatchDescriptionScreen(navController: NavController, viewModel: MatchDescrip
                     )
                     Column {
                         match?.goalscorers?.forEach{ goal ->
+
+                            val id = if (goal.homeScorerId == "") goal.awayScorerId else goal.homeScorerId
+                            val teamId = if (goal.homeScorerId == "") match.awayTeamId else match.homeTeamId
+
                             GoalItem(goal = goal,
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .clickable {
-                                        //TODO
+                                        viewModel.onPurchaseClick(id.toLong(), teamId)
                                     }
                                     .padding(10.dp)
                             )
                             Spacer(modifier = Modifier.height(10.dp))
+                        }
+                    }
+                    if(state.isDialogShown){
+                        state.player?.let {
+                            CustomDialog(onDismiss = { viewModel.onDismissDialog() }, it)
                         }
                     }
                 }

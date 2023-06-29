@@ -58,6 +58,7 @@ fun MatchItem(match: Match, modifier: Modifier){
                     AsyncImage(
                         model = ImageRequest.Builder(LocalContext.current)
                             .data(match.home_team_logo)
+                            //.error(R.drawable.)
                             .crossfade(true)
                             .transformations(RoundedCornersTransformation(50f))
                             .build(),
@@ -115,6 +116,7 @@ fun MatchItem(match: Match, modifier: Modifier){
                     AsyncImage(
                         model = ImageRequest.Builder(LocalContext.current)
                             .data(match.away_team_logo)
+                            //.error(R.drawable.)
                             .crossfade(true)
                             .build(),
                         contentDescription = null,
