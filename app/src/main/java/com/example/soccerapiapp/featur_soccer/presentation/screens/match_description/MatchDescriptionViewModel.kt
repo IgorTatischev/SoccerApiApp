@@ -1,6 +1,5 @@
 package com.example.soccerapiapp.featur_soccer.presentation.screens.match_description
 
-import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
@@ -58,7 +57,6 @@ class MatchDescriptionViewModel @Inject constructor(
             when(result) {
                 is Resource.Success -> {
                     _state.value = state.value.copy(player = result.data?.players?.get(0), isDialogShown = true)
-                    Log.d("Player Name = ", result.data?.players?.get(0)!!.player_name)
                 }
                 else -> {
                     _state.value = state.value.copy(isDialogShown = false)

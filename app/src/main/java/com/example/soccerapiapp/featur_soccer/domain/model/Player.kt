@@ -3,8 +3,9 @@ package com.example.soccerapiapp.featur_soccer.domain.model
 import com.google.gson.annotations.SerializedName
 
 data class PlayersList(
-    val players: List<Player>,
-    val success: Int
+    val success: Int,
+    @SerializedName("result")
+    val players: List<Player>
 )
 
 data class Player(
