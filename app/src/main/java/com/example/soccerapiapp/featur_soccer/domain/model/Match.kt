@@ -19,26 +19,40 @@ data class Match(
     val homeTeamName: String,
     @SerializedName("event_away_team")
     val awayTeamName: String,
-    val away_team_logo: String,
-    val home_team_logo: String,
+    @SerializedName("away_team_logo")
+    val awayTeamLogo: String,
+    @SerializedName("home_team_logo")
+    val homeTeamLogo: String,
     @SerializedName("event_home_formation")
-    val home_schema: String,
+    val homeSchema: String,
     @SerializedName("event_away_formation")
-    val away_schema: String,
-    val event_date: String,
-    val event_time: String,
-    val event_final_result: String,
-    val event_ft_result: String,
-    val event_penalty_result: String,
-    val event_status: String,
-    val event_live: String,
-    val event_stadium: String,
+    val awaySchema: String,
+    @SerializedName("event_date")
+    val eventDate: String,
+    @SerializedName("event_time")
+    val eventTime: String,
+    @SerializedName("event_final_result")
+    val eventFinalResult: String,
+    @SerializedName("event_ft_result")
+    val eventFtResult: String,
+    @SerializedName("event_penalty_result")
+    val eventPenaltyResult: String,
+    @SerializedName("event_status")
+    val eventStatus: String,
+    @SerializedName("event_live")
+    val eventLive: String,
+    @SerializedName("event_stadium")
+    val eventStadium: String,
     @SerializedName("league_key")
     val leagueId: Int,
-    val league_logo: String,
-    val league_name: String,
-    val league_round: String,
-    val league_season: String,
+    @SerializedName("league_logo")
+    val leagueLogo: String,
+    @SerializedName("league_name")
+    val leagueName: String,
+    @SerializedName("league_round")
+    val leagueRound: String,
+    @SerializedName("league_season")
+    val leagueSeason: String,
     val goalscorers: List<Goals>
 )
 
@@ -51,7 +65,8 @@ data class Goals(
     val homeScorerName: String,
     @SerializedName("home_scorer_id")
     val homeScorerId: String,
-    val info_time: String,
+    @SerializedName("info_time")
+    val infoTime: String,
     val score: String,
     val time: String
 )

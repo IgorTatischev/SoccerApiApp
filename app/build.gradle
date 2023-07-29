@@ -3,7 +3,6 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
-    id 'com.google.gms.google-services'
 }
 
 android {
@@ -93,8 +92,6 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.3.0")
     //WebView
     implementation "com.google.accompanist:accompanist-webview:0.24.11-rc"
-    //OneSignal
-    implementation 'com.onesignal:OneSignal:[4.0.0, 4.99.99]'
 }
 
 kapt {

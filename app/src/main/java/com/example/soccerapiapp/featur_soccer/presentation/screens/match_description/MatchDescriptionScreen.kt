@@ -61,7 +61,7 @@ fun MatchDescriptionScreen(navController: NavController, viewModel: MatchDescrip
             CenterAlignedTopAppBar(
                 title = { match?.let {
                     Text(
-                        text = it.league_name + " " + it.league_season,
+                        text = it.leagueName + " " + it.leagueSeason,
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Light,
                     )
@@ -95,7 +95,7 @@ fun MatchDescriptionScreen(navController: NavController, viewModel: MatchDescrip
                     Column(modifier = Modifier.fillMaxWidth().padding(top = 20.dp), horizontalAlignment = Alignment.CenterHorizontally) {
                         match?.let {
                             Text(
-                                text = it.league_round,
+                                text = it.leagueRound,
                                 style = MaterialTheme.typography.titleLarge,
                                 fontSize = 20.sp,
                                 fontWeight = FontWeight.Light
@@ -104,7 +104,7 @@ fun MatchDescriptionScreen(navController: NavController, viewModel: MatchDescrip
                         Spacer(modifier = Modifier.height(10.dp))
                         AsyncImage(
                             model = ImageRequest.Builder(LocalContext.current)
-                                .data(match?.league_logo)
+                                .data(match?.leagueLogo)
                                 .crossfade(true)
                                 .build(),
                             contentDescription = null,
@@ -115,7 +115,7 @@ fun MatchDescriptionScreen(navController: NavController, viewModel: MatchDescrip
                         Spacer(modifier = Modifier.height(20.dp))
                         match?.let {
                             Text(
-                                text = it.event_stadium,
+                                text = it.eventStadium,
                                 style = MaterialTheme.typography.titleLarge,
                                 fontSize = 18.sp,
                                 textAlign = TextAlign.Center
@@ -139,7 +139,7 @@ fun MatchDescriptionScreen(navController: NavController, viewModel: MatchDescrip
                             Spacer(modifier = Modifier.height(5.dp))
                             AsyncImage(
                                 model = ImageRequest.Builder(LocalContext.current)
-                                    .data(match?.home_team_logo)
+                                    .data(match?.homeTeamLogo)
                                     .crossfade(true)
                                     .transformations(RoundedCornersTransformation(50f))
                                     .build(),
@@ -159,7 +159,7 @@ fun MatchDescriptionScreen(navController: NavController, viewModel: MatchDescrip
                             Spacer(modifier = Modifier.height(5.dp))
                             match?.let {
                                 Text(
-                                    text = it.home_schema,
+                                    text = it.homeSchema,
                                     style = MaterialTheme.typography.titleMedium,
                                     fontSize = 16.sp,
                                     textAlign = TextAlign.Center
@@ -175,7 +175,7 @@ fun MatchDescriptionScreen(navController: NavController, viewModel: MatchDescrip
                         ) {
                             match?.let {
                                 Text(
-                                    text = it.event_ft_result,
+                                    text = it.eventFtResult,
                                     style = MaterialTheme.typography.headlineLarge,
                                     fontSize = 32.sp,
                                     fontWeight = FontWeight.Bold,
@@ -185,7 +185,7 @@ fun MatchDescriptionScreen(navController: NavController, viewModel: MatchDescrip
                             Spacer(Modifier.height(5.dp))
                             match?.let {
                                 Text(
-                                    text = it.event_time,
+                                    text = it.eventTime,
                                     style = MaterialTheme.typography.titleLarge,
                                     fontSize = 18.sp,
                                     textAlign = TextAlign.Center
@@ -210,7 +210,7 @@ fun MatchDescriptionScreen(navController: NavController, viewModel: MatchDescrip
                             Spacer(modifier = Modifier.height(5.dp))
                             AsyncImage(
                                 model = ImageRequest.Builder(LocalContext.current)
-                                    .data(match?.away_team_logo)
+                                    .data(match?.awayTeamLogo)
                                     .crossfade(true)
                                     .build(),
                                 contentDescription = null,
@@ -229,7 +229,7 @@ fun MatchDescriptionScreen(navController: NavController, viewModel: MatchDescrip
                             Spacer(modifier = Modifier.height(5.dp))
                             match?.let {
                                 Text(
-                                    text = it.away_schema,
+                                    text = it.awaySchema,
                                     style = MaterialTheme.typography.titleMedium,
                                     fontSize = 16.sp,
                                     textAlign = TextAlign.Center
@@ -241,7 +241,7 @@ fun MatchDescriptionScreen(navController: NavController, viewModel: MatchDescrip
                     Divider(modifier = Modifier.padding(start = 15.dp,end = 15.dp), thickness = 1.dp)
                     Spacer(modifier = Modifier.height(15.dp))
                     Text(
-                        text = stringResource(id = R.string.goal),
+                        text = stringResource(id = R.string.score),
                         modifier = Modifier.padding(start = 15.dp),
                         style = MaterialTheme.typography.headlineSmall,
                         fontSize = 24.sp,

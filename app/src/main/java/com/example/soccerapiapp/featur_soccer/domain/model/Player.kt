@@ -11,16 +11,26 @@ data class PlayersList(
 data class Player(
     @SerializedName("player_key")
     val playerId: Long,
-    val player_name: String,
-    val player_number: String,
-    val player_age: String,
-    val player_country: Any,
-    val player_type: String,
-    val player_goals: String,
-    val player_assists: String,
-    val player_image: String,
-    val player_match_played: String,
-    val player_red_cards: String,
-    val player_yellow_cards: String,
-    val player_rating: String
+    @SerializedName("player_name")
+    val playerName: String,
+    @SerializedName("player_number")
+    val playerNumber: String,
+    @SerializedName("player_age")
+    val playerAge: String,
+    @SerializedName("player_type")
+    val playerType: String,
+    @SerializedName("player_goals")
+    val playerGoals: String,
+    @SerializedName("player_assists")
+    val playerAssists: String,
+    @SerializedName("player_image")
+    val playerImage: String,
+    @SerializedName("player_match_played")
+    val playerMatchPlayed: String,
+    @SerializedName("player_red_cards")
+    val playerRedCards: String,
+    @SerializedName("player_yellow_cards")
+    val playerYellowCards: String,
+    @SerializedName("player_rating")
+    val playerRating: String
 )

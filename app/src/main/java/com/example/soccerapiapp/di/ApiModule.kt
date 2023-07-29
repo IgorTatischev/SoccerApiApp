@@ -34,35 +34,10 @@ object ApiModule {
             .request()
             .url
             .newBuilder()
-            .addQueryParameter("APIkey", "e45b2a8c9c8527b8de7d5d7ed5961f5086f80d8d32867b63b84deddf61cb9a47")
+            .addQueryParameter("APIkey", "32808309af0f07278ab88904c4b89294ea9f9ac8bd4b494cedc04d59cd256982")
             .build()
         chain.proceed(chain.request().newBuilder().url(url).build())
     }
-
-//    @Provides
-//    @Singleton
-//    fun provideOkHttpClient(): OkHttpClient {
-//        return OkHttpClient.Builder()
-//            .addInterceptor { chain ->
-//                val url = chain
-//                    .request()
-//                    .url
-//                    .newBuilder()
-//                    .addQueryParameter("APIkey", "e45b2a8c9c8527b8de7d5d7ed5961f5086f80d8d32867b63b84deddf61cb9a47")
-//                    .build()
-//                chain.proceed(chain.request().newBuilder().url(url).build())
-//            }
-//            //add timeouts, logging
-//            .also { okHttpClient ->
-//                if (BuildConfig.DEBUG) {
-//                    val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
-//                        level = HttpLoggingInterceptor.Level.BODY
-//                    }
-//                    okHttpClient.addInterceptor(httpLoggingInterceptor)
-//                }
-//            }
-//            .build()
-//    }
 
     @Singleton
     @Provides
@@ -89,3 +64,28 @@ object ApiModule {
         return SoccerRepositoryImpl(soccerApiService)
     }
 }
+
+//    @Provides
+//    @Singleton
+//    fun provideOkHttpClient(): OkHttpClient {
+//        return OkHttpClient.Builder()
+//            .addInterceptor { chain ->
+//                val url = chain
+//                    .request()
+//                    .url
+//                    .newBuilder()
+//                    .addQueryParameter("APIkey", "e45b2a8c9c8527b8de7d5d7ed5961f5086f80d8d32867b63b84deddf61cb9a47")
+//                    .build()
+//                chain.proceed(chain.request().newBuilder().url(url).build())
+//            }
+//            //add timeouts, logging
+//            .also { okHttpClient ->
+//                if (BuildConfig.DEBUG) {
+//                    val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
+//                        level = HttpLoggingInterceptor.Level.BODY
+//                    }
+//                    okHttpClient.addInterceptor(httpLoggingInterceptor)
+//                }
+//            }
+//            .build()
+//    }

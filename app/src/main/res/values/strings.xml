@@ -2,6 +2,14 @@
     <string name="app_name">SoccerApiApp</string>
     <string name="away">Away</string>
     <string name="home">Home</string>
-    <string name="goal">Goal Score</string>
+    <string name="score">Goal Score</string>
     <string name="back">Back</string>
+    <string name="age">Age: %1$s</string>
+    <string name="number">Number: %1$s</string>
+    <string name="position">Position: %1$s</string>
+    <string name="goals">Goals: %1$s</string>
+    <string name="assists">Assists: %1$s</string>
+    <string name="matches">Matches: %1$s</string>
+    <string name="red_cards">Red cards: %1$s</string>
+    <string name="yellow_cards">Yellow cards: %1$s</string>
 </resources>

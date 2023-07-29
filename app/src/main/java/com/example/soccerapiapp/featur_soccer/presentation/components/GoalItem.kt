@@ -28,7 +28,7 @@ fun GoalItem(goal: Goals, modifier: Modifier){
     ) {
         Row(modifier.fillMaxSize().padding(start = 10.dp)) {
             Text(
-                text = goal.info_time,
+                text = goal.infoTime,
                 style = MaterialTheme.typography.titleMedium,
                 fontSize = 16.sp
             )
